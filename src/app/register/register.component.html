@@ -1,0 +1,57 @@
+<div class="container col-md-6 mx-auto p-3">
+  <div class="card border-5">
+    <div class="card-header col"><b>Registration</b></div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+    <form class="text-center p-3" #form="ngForm" [mustMatch]="['password', 'confirmPassword']">
+      <div class="row m-3">
+        <div class="col-lg-6 mb-3">
+          <input #firstnameField="ngModel" [(ngModel)]="user.fName" type="text" name="fName" class="form-control"
+            placeholder="First name *" maxlength="10" aria-label="First name" required>
+          <div [hidden]="firstnameField.valid || firstnameField.untouched" class="alert alert-danger">Please Enter First
+            Name
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <input type="text" class="form-control" [(ngModel)]="user.lName" placeholder="Last name" name="lName"
+            maxlength="10" aria-label="Last name">
+        </div>
+      </div>
+      <div class="row m-3">
+        <div class="col mb-3">
+          <input #usernameField="ngModel" [(ngModel)]="user.username" type="email" name="username" class="form-control"
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+" aria-label="Email" placeholder="Email *" required>
+          <div [hidden]="usernameField.valid || usernameField.untouched" class="alert alert-danger">Please Enter a valid
+            Email<br>Like: example@gmail.com</div>
+        </div>
+      </div>
+      <div class="row m-3 form-group">
+        <div class="col-lg-6 mb-3">
+          <input #passwordField="ngModel" [(ngModel)]="user.password"
+            [ngClass]="{ 'is-invalid': passwordField.touched && passwordField.invalid }" type="password" name="password"
+            class="form-control" pattern="[a-zA-Z0-9]{8,15}" aria-label="Password" placeholder="Password *" required>
+          <div [hidden]="passwordField.valid || passwordField.untouched" class="alert alert-danger">Password should
+            be<br>8-15 character
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <input #cPasswordField="ngModel" [(ngModel)]="password1" type="password"
+            [ngClass]="{ 'is-invalid': cPasswordField.touched && cPasswordField.invalid }" name="confirmPassword"
+            class="form-control" pattern="[a-zA-Z0-9]{8,15}" aria-label="Confirm Password"
+            placeholder="Confirm password *" required>
+          <div [hidden]="cPasswordField.valid || cPasswordField.untouched" class="alert alert-danger">Password should
+            be<ol>
+              <li>8-15 character</li>
+              <li>Passwords must match</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="text-center col">
+        <button type="submit" class="btn btn-dark" (click)="register(form.value)"
+          [disabled]="!form.valid">SUBMIT</button>
+      </div>
+    </form>
+  </div>
+</div>

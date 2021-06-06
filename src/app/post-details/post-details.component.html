@@ -1,0 +1,36 @@
+<div class="container col-md-12 mx-auto p-3">
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+  <div *ngIf="(question|async) as question">
+    <app-post [question]='question'></app-post>
+    <div *ngIf="question.comments">
+      <div class="card m-3" [ngClass]="{'ng-correct': comment.correct }" *ngFor="let comment of question.comments">
+        <div class="card-body">
+          <div class="row">
+            <h4 class="m-0">{{comment.subject}} <i class="fa fa-check-circle" title="Correct Answer" style="color: #00cc00;" *ngIf="comment.correct" ></i></h4>
+          </div>
+          <div class="row">
+            <pre class="blockquote-footer m-0">by <b>{{comment.user.fName}}</b> <i class="fa fa-clock-o"></i> <b>{{comment.date}}</b>
+            </pre>
+          </div>
+          <div class="row">
+            <pre class="m-0">{{comment.body}}
+            </pre>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="m-0">
+              <i class="fa fa-thumbs-o-up fa-lg" title="Like" (click)="like(comment.commentId)" *ngIf="!comment.liked"></i><i class="fa fa-thumbs-up fa-lg" title="Liked" *ngIf="comment.liked"></i>
+               {{comment.countLike}} like
+             </p>
+            </div>
+            <div class="col text-end m-0">
+              <i class="fa fa-check-circle-o fa-2x" (click)="correct(comment.commentId)" title="Mark as Correct Answer" *ngIf="localUser.username === question.user.username && !question.answered" ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

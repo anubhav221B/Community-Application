@@ -1,0 +1,37 @@
+<div class="container col-md-6 mx-auto p-3">
+  <div class="card border-5">
+    <div class="card-header col"><b>Login</b></div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+    <form class="text-center p-3" #form="ngForm">
+      <div class="row m-3 form-group">
+        <div class="col-lg-4">
+          <label for="inputEmail" class="form-label">Email</label>
+        </div>
+        <div class="col-lg-8">
+          <input #usernameField="ngModel" [(ngModel)]="loginDetails.username" type="email" name="username"
+            class="form-control" id="inputEmail" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" placeholder="example@gmail.com"
+            required>
+          <div [hidden]="usernameField.valid || usernameField.untouched" class="alert alert-danger">Please Enter a valid
+            Email</div>
+        </div>
+      </div>
+      <div class="row m-3 form-group">
+        <div class="col-lg-4">
+          <label for="inputPassword" class="form-label">Password</label>
+        </div>
+        <div class="col-lg-8">
+          <input #passwordField="ngModel" [(ngModel)]="loginDetails.password" type="password" name="password"
+            class="form-control" id="inputPassword" pattern="[a-zA-Z0-9]{8,15}" required>
+          <div [hidden]="passwordField.valid || passwordField.untouched" class="alert alert-danger">Password should
+            be<br>8-15 character
+          </div>
+        </div>
+      </div>
+      <div class="text-center col">
+        <button type="submit" class="btn btn-dark" (click)="login(form.value)" [disabled]="!form.valid">LOGIN</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~font-awesome/css/font-awesome.min.css";
+div.card-header {
+  font-size: large;
+}
+
+div.card {
+  margin: auto;
+}
+
+.ng-invalid:not(form).ng-touched{
+  border: 1px solid salmon;
+  border-left: 4px solid red;
+}
+
+.ng-answer,.ng-correct{
+  border: 1px solid #00ff00;
+  border-top: 4px solid  #00cc00;
+  background-color: #fafffa;
+}

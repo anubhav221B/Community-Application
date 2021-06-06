@@ -1,0 +1,52 @@
+<div class="container col-md-12 mx-auto p-3">
+  <div class="card border-5">
+    <div class="card-header col"><b>New Post</b></div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+    <form class="p-3" #form="ngForm">
+      <div class="row mb-2 mx-3 form-group">
+        <div class="col-lg-2"><label for="subject" class="m-1">Subject :</label></div>
+        <div class="col-lg-10">
+          <input #subjectField="ngModel" [(ngModel)]="question.subject" type="text" name="subject"
+            class="form-control m-1" id="subject" placeholder="Enter Subject *" required>
+          <div [hidden]="subjectField.valid || subjectField.untouched" class="alert alert-danger">Please Enter Subject
+          </div>
+        </div>
+      </div>
+      <div class="row mb-2 mx-3 form-group">
+        <div class="col-lg-2"><label for="product" class="m-1">Product :</label></div>
+        <div class="col-lg-10">
+          <input #productField="ngModel" [(ngModel)]="question.product" type="text" name="product"
+            class="form-control m-1" id="product" placeholder="Enter Product *" required>
+          <div [hidden]="productField.valid || productField.untouched" class="alert alert-danger">Please Enter Product
+          </div>
+        </div>
+      </div>
+      <div class="row mb-2 mx-3 form-group">
+        <div class="col-lg-2"><label for="tag" class="m-1">Tag :</label></div>
+        <div class="col-lg-10">
+          <input #tagField="ngModel" [(ngModel)]="question.tag" type="text" name="tag" class="form-control m-1" id="tag"
+            placeholder="Enter Tag *" required>
+          <div [hidden]="tagField.valid || tagField.untouched" class="alert alert-danger">Please Enter Tag</div>
+        </div>
+      </div>
+      <div class="row mb-2 mx-3 form-group">
+        <label for="body" class="m-1">Body :</label>
+        <textarea #bodyField="ngModel" [(ngModel)]="question.body" name="body" class="form-control m-1" id="body"
+          rows="6" placeholder="Enter Body *" required></textarea>
+        <div [hidden]="bodyField.valid || bodyField.untouched" class="alert alert-danger">Please Enter Body</div>
+      </div>
+      <div class="text-end row mx-3">
+        <div class="col-lg-10"></div>
+        <div class="col-lg-1 mb-2">
+          <button type="submit" class="btn btn-outline-secondary" [routerLink]="['/welcome']">CANCEL</button>
+        </div>
+        <div class="col-lg-1 mb-2">
+          <button type="submit" class="btn btn-dark" (click)="postQuestion(form.value)"
+            [disabled]="!form.valid">POST</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

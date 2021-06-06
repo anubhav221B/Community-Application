@@ -1,0 +1,24 @@
+<div class="card m-3" [ngClass]= "{'ng-answer': question.answered }">
+  <div class="card-body">
+    <div class="row">
+      <h4 class="m-0">{{question.subject}} <i class="fa fa-check-circle" style="color: #00cc00;" title="Answered" *ngIf="question.answered" ></i></h4>
+    </div>
+    <div class="row">
+    <pre class="blockquote-footer m-0">by <b>{{question.user.fName}}</b> in <b>{{question.product}}</b> <i class="fa fa-clock-o"></i> <b>{{question.date}}</b>
+    </pre>
+    </div>
+    <div class="row" *ngIf="question.comments">
+      <pre class="m-0">{{question.body}}
+      </pre>
+    </div>
+    <div class="row">
+      <div class="col">
+        <pre class="m-0"><i class="fa fa-comments" title="Comments"></i> {{question.countComment}}
+<a [routerLink]="['/posts', question.questionId]" *ngIf="!question.comments">Show detail and {{question.answered?"result in replies":"replies"}}</a></pre>
+      </div>
+      <div class="col text-end">
+        <a class="btn btn-dark m-0" (click)="reply(question.subject)">REPLY</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container col-md-12 mx-auto p-3">
+  <div class="card border-5">
+    <div class="card-header col"><b>Reply</b></div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+    <form class="p-3" #form="ngForm">
+      <div class="row mb-2 mx-3 form-group">
+        <div class="col-lg-2"><label for="subject" class="m-1">Subject :</label></div>
+        <div class="col-lg-10">
+          <input type="text" name="subject" class="form-control m-1" id="subject" [placeholder]="comment.subject"
+            readonly>
+        </div>
+      </div>
+      <div class="row mb-2 mx-3 form-group">
+        <label for="body" class="m-1">Body :</label>
+        <textarea #bodyField="ngModel" [(ngModel)]="comment.body" name="body" class="form-control m-1" id="body"
+          rows="9" placeholder="Enter Body *" required></textarea>
+        <div [hidden]="bodyField.valid || bodyField.untouched" class="alert alert-danger">Please Enter Body</div>
+      </div>
+      <div class="text-end row mx-3">
+        <div class="col-lg-10"></div>
+        <div class="col-lg-1 mb-2">
+          <button type="submit" class="btn btn-outline-secondary" [routerLink]="['/posts', questionId]">CANCEL</button>
+        </div>
+        <div class="col-lg-1 mb-2">
+          <button type="submit" class="btn btn-dark" (click)="post(form.value)" [routerLink]="['/posts', questionId]"
+            [disabled]="!form.valid">POST</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

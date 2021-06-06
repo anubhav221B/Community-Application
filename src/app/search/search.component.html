@@ -1,0 +1,33 @@
+<div class="rounded">
+  <div *ngFor="let param of searchParams; let tempIndex = index">
+    <form #form="ngForm">
+      <div class="row my-2">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 p-0">
+          <select class="form-select" [(ngModel)]="param.select" name="select" for="search" required>
+            <option value="" disabled>Choose search option</option>
+            <option value="question">Question</option>
+            <option value="product">Product</option>
+            <option value="username">User email</option>
+            <option value="tag">Tag</option>
+            <option value="date">Date</option>
+          </select>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-11 p-0">
+          <input class="form-control" [(ngModel)]="param.search" name="search" id="search" type="text" required>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col text-end">
+      <button type="button" (click)="add()" [disabled]="i === 5" class="btn btn-success">
+        <i class="fa fa-plus-circle"> Add Filter</i>
+      </button>
+    </div>
+    <div class="col ">
+      <button type="button" [routerLink]="['/posts/search']" (click)="dataOut()" [disabled]="" class="btn btn-primary">
+        <i class="fa fa-search"> Search</i>
+      </button>
+    </div>
+  </div>
+</div>
