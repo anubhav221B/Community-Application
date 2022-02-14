@@ -19,6 +19,7 @@ import { NewReplyComponent } from './new-reply/new-reply.component';
 import { PostComponent } from './post/post.component';
 import { SearchComponent } from './search/search.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SearchResultComponent } from './search-result/search-result.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ScrollingModule,
   ],
   providers: [AuthGuard,
     {

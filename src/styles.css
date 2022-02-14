@@ -18,3 +18,7 @@ div.card {
   border-top: 4px solid  #00cc00;
   background-color: #fafffa;
 }
+
+cdk-virtual-scroll-viewport {
+   height: 600px;
+}

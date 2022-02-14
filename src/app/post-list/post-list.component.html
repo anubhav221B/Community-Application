@@ -3,7 +3,9 @@
     {{errorMessage}}
   </div>
   <div *ngIf="questions">
-    <app-post [question]='question' *ngFor="let question of questions"></app-post>
+    <cdk-virtual-scroll-viewport itemSize="200" class="viewport">
+      <app-post [question]='question' *cdkVirtualFor="let question of questions"></app-post>
+    </cdk-virtual-scroll-viewport>
   </div>
   <div *ngIf="questions === undefined || questions.length === 0">
     <b><u>Sorry No Post Found</u></b>
